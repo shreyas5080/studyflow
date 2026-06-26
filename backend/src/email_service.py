@@ -13,10 +13,7 @@ def send_otp_email(to_email: str, otp: str):
         raise HTTPException(status_code=500, detail="BREVO_API_KEY missing")
 
     payload = {
-        "sender": {
-            "name": "StudyFlow",
-            "email": "shreyaspojari567@gmail.com"
-        },
+        "sender": {"name": "StudyFlow", "email": "shreyaspojari567@gmail.com"},
         "to": [{"email": to_email}],
         "subject": "Your StudyFlow verification code",
         "htmlContent": f"""
@@ -40,13 +37,13 @@ If you didn’t request this, you can ignore this email.
 
 Thanks,
 StudyFlow Team
-"""
+""",
     }
 
     headers = {
         "accept": "application/json",
         "api-key": BREVO_API_KEY,
-        "content-type": "application/json"
+        "content-type": "application/json",
     }
 
     try:
@@ -54,14 +51,13 @@ StudyFlow Team
             "https://api.brevo.com/v3/smtp/email",
             json=payload,
             headers=headers,
-            timeout=15
+            timeout=15,
         )
 
         if response.status_code >= 400:
             print("BREVO ERROR:", response.status_code, response.text)
             raise HTTPException(
-                status_code=500,
-                detail=f"Email failed: {response.text}"
+                status_code=500, detail=f"Email failed: {response.text}"
             )
 
     except requests.RequestException as e:

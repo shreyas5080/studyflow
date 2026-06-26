@@ -5,18 +5,27 @@ from fastapi.security import OAuth2PasswordRequestForm
 from src.models import User
 from bcrypt import checkpw
 from src.schemas import LoginOut, RefreshTokenRequest, TokenRefreshOut
-from src.auth.auth_utils import create_access_token, create_refresh_token, verify_refresh_token
+from src.auth.auth_utils import (
+    create_access_token,
+    create_refresh_token,
+    verify_refresh_token,
+)
 
 router = APIRouter()
 
+
 @router.post("/login", response_model=LoginOut)
-def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)):
+def login_user(
+    form_data: OAuth2PasswordRequestForm = Depends(), db: Session = Depends(get_db)
+):
     db_user = db.query(User).filter(User.username == form_data.username).first()
     if not db_user:
         raise HTTPException(status_code=404, detail="User not found")
-    if not checkpw(form_data.password.encode('utf-8'), db_user.password_hash.encode('utf-8')):
+    if not checkpw(
+        form_data.password.encode("utf-8"), db_user.password_hash.encode("utf-8")
+    ):
         raise HTTPException(status_code=401, detail="Invalid password")
-    
+
     access_token = create_access_token(data={"sub": str(db_user.id)})
     refresh_token = create_refresh_token(data={"sub": str(db_user.id)})
     return {
@@ -24,7 +33,7 @@ def login_user(form_data: OAuth2PasswordRequestForm = Depends(), db: Session = D
         "username": db_user.username,
         "access_token": access_token,
         "refresh_token": refresh_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
     }
 
 
@@ -45,5 +54,5 @@ def refresh_token(request: RefreshTokenRequest, db: Session = Depends(get_db)):
     return {
         "access_token": access_token,
         "refresh_token": refresh_token,
-        "token_type": "bearer"
+        "token_type": "bearer",
     }

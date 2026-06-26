@@ -1,4 +1,4 @@
-from fastapi import FastAPI,Depends,HTTPException
+from fastapi import FastAPI, Depends, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy.orm import Session
 from sqlalchemy.exc import IntegrityError
@@ -12,6 +12,7 @@ from src.auth.otp import generate_otp, save_otp, verify_otp
 from src.email_service import send_otp_email
 from src.routes.subjects import router as subjects_router
 from src.AI.generate_tableAI import router as table_gen
+
 app = FastAPI()
 
 app.include_router(table_gen)
@@ -27,9 +28,11 @@ app.add_middleware(
     allow_headers=["*"],
 )
 
+
 @app.get("/")
 def user():
     return {"hello": "world"}
+
 
 @app.post("/users", response_model=UserOut)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
@@ -37,10 +40,9 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
         db_user = User(
             username=user.username,
             email=user.email,
-            password_hash=hashpw(
-                user.password.encode('utf-8'),
-                gensalt(12)
-            ).decode('utf-8')
+            password_hash=hashpw(user.password.encode("utf-8"), gensalt(12)).decode(
+                "utf-8"
+            ),
         )
 
         db.add(db_user)
@@ -59,6 +61,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
 
         raise HTTPException(400, "Duplicate entry")
 
+
 @app.get("/users/{user_id}", response_model=UserOut)
 def read_user(user_id: int, db: Session = Depends(get_db)):
     db_user = db.query(User).filter(User.id == user_id).first()
@@ -66,12 +69,14 @@ def read_user(user_id: int, db: Session = Depends(get_db)):
         raise HTTPException(status_code=404, detail="User not found")
     return db_user
 
+
 @app.post("/request-otp")
 async def request_otp(otp_request: OTPRequest):
     otp = generate_otp()
     await save_otp(otp_request.email, otp)
     send_otp_email(otp_request.email, otp)
     return {"message": "OTP sent to email"}
+
 
 @app.post("/verify-otp")
 async def verify_otp_endpoint(otp_verify: OTPVerify):

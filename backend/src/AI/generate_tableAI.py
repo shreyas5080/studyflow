@@ -4,10 +4,10 @@ from openai import OpenAI
 from dotenv import load_dotenv
 from fastapi import HTTPException, Depends
 from sqlalchemy.orm import Session
-from src.models import Subject,AITable
-from src.deps import get_db,get_current_user
+from src.models import Subject, AITable
+from src.deps import get_db, get_current_user
 from fastapi import APIRouter
-from datetime import date,timedelta
+from datetime import date, timedelta
 from typing import Any
 
 
@@ -16,17 +16,15 @@ load_dotenv()
 router = APIRouter()
 
 nvidia_client = OpenAI(
-    base_url="https://integrate.api.nvidia.com/v1",
-    api_key=os.getenv("NVIDIA_API_KEY")
+    base_url="https://integrate.api.nvidia.com/v1", api_key=os.getenv("NVIDIA_API_KEY")
 )
 
 today = date.today().isoformat()
 
+
 @router.post("/student/{user_id}/subjects/generate-table")
 def generate_table(
-    user_id: int,
-    db: Session = Depends(get_db),
-    current_user=Depends(get_current_user)
+    user_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)
 ):
     if current_user.id != user_id:
         raise HTTPException(status_code=403, detail="Not authorized")
@@ -34,19 +32,19 @@ def generate_table(
     today = date.today()
     subjects = (
         db.query(Subject)
-        .filter(Subject.user_id == user_id,Subject.exam_date > today)
+        .filter(Subject.user_id == user_id, Subject.exam_date > today)
         .order_by(Subject.exam_date)
         .all()
     )
 
     if not subjects:
-        raise HTTPException(status_code=404,detail="no subject found ")
+        raise HTTPException(status_code=404, detail="no subject found ")
 
     subjects_data = [
         {
             "subject_name": s.subject_name,
             "exam_date": str(s.exam_date),
-            "difficulty": s.difficulty
+            "difficulty": s.difficulty,
         }
         for s in subjects
     ]
@@ -67,7 +65,7 @@ def generate_table(
                     5. Never schedule dates in the past.
                     6. Return ONLY valid JSON.
                     7. Do not return explanations.
-                """
+                """,
             },
             {
                 "role": "user",
@@ -101,11 +99,11 @@ def generate_table(
                         }}
                       ]
                     }}
-                    """
-            }
+                    """,
+            },
         ],
         temperature=0.3,
-        max_tokens=1000
+        max_tokens=1000,
     )
 
     ai_text = response.choices[0].message.content or ""
@@ -117,59 +115,39 @@ def generate_table(
         print("AI timetable failed:", e)
         print("RAW AI:", ai_text)
         time_table_data = generate_fallback_timetable(subjects, today)
-    
 
     clean_text = json.dumps(time_table_data)
 
     existing_table = db.query(AITable).filter(AITable.user_id == user_id).first()
 
     if existing_table:
-        existing_table.ai_table =clean_text
+        existing_table.ai_table = clean_text
         db.commit()
         db.refresh(existing_table)
 
-        
-        return{
-            "message" : "Table Updated seccussfully"
-        }
+        return {"message": "Table Updated seccussfully"}
 
-    ai = AITable(
-        user_id = user_id,
-        ai_table = clean_text
-        ) 
+    ai = AITable(user_id=user_id, ai_table=clean_text)
     db.add(ai)
     db.commit()
     db.refresh(ai)
 
-    return {
-        "message": "Table generated seccussfully"
-    }
+    return {"message": "Table generated seccussfully"}
 
 
 @router.get("/student/{user_id}/time-table")
 def get_time_table(
-    user_id: int,
-    db: Session = Depends(get_db),
-    current_user=Depends(get_current_user)
+    user_id: int, db: Session = Depends(get_db), current_user=Depends(get_current_user)
 ):
     if current_user.id != user_id:
         raise HTTPException(status_code=403, detail="Not authorized")
 
-    table = (
-        db.query(AITable)
-        .filter(AITable.user_id == user_id)
-        .first()
-    )
+    table = db.query(AITable).filter(AITable.user_id == user_id).first()
 
     if not table:
-        return {
-            "timetable": None,
-            "message": "No timetable generated yet"
-        }
+        return {"timetable": None, "message": "No timetable generated yet"}
 
-    return {
-        "timetable": table.ai_table
-    }
+    return {"timetable": table.ai_table}
 
 
 def clean_ai_json(ai_text: str):
@@ -187,7 +165,8 @@ def clean_ai_json(ai_text: str):
         return data
     except json.JSONDecodeError:
         raise HTTPException(status_code=500, detail="AI returned invalid JSON")
-    
+
+
 def generate_fallback_timetable(subjects, today: date):
     rows = []
 
@@ -218,22 +197,22 @@ def generate_fallback_timetable(subjects, today: date):
         selected_dates = available_dates[-days_needed:]
 
         for index, study_date in enumerate(selected_dates, start=1):
-            rows.append({
-                "date": study_date.isoformat(),
-                "subject": subject.subject_name,
-                "task": f"Study {subject.subject_name} part {index}",
-                "hours": hours,
-            })
+            rows.append(
+                {
+                    "date": study_date.isoformat(),
+                    "subject": subject.subject_name,
+                    "task": f"Study {subject.subject_name} part {index}",
+                    "hours": hours,
+                }
+            )
 
     rows.sort(key=lambda x: (x["date"], x["subject"]))
 
     return {"timetable": rows}
 
+
 def validate_timetable(data: dict[str, Any], subjects, today: date):
-    deadlines = {
-        subject.subject_name: subject.exam_date
-        for subject in subjects
-    }
+    deadlines = {subject.subject_name: subject.exam_date for subject in subjects}
 
     timetable = data.get("timetable")
 
@@ -265,12 +244,14 @@ def validate_timetable(data: dict[str, Any], subjects, today: date):
         if hours <= 0:
             raise ValueError("Invalid hours")
 
-        clean_rows.append({
-            "date": study_date.isoformat(),
-            "subject": subject,
-            "task": task,
-            "hours": int(hours) if hours.is_integer() else hours,
-        })
+        clean_rows.append(
+            {
+                "date": study_date.isoformat(),
+                "subject": subject,
+                "task": task,
+                "hours": int(hours) if hours.is_integer() else hours,
+            }
+        )
 
     clean_rows.sort(key=lambda x: (x["date"], x["subject"]))
     return {"timetable": clean_rows}

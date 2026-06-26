@@ -1,6 +1,7 @@
 from pydantic import BaseModel, EmailStr
 from datetime import date
 
+
 class UserCreate(BaseModel):
     username: str
     email: EmailStr
@@ -13,40 +14,48 @@ class UserOut(BaseModel):
     email: EmailStr
 
     class Config:
-        from_attributes=True
+        from_attributes = True
+
 
 class UserLogin(BaseModel):
     username: str
     password: str
 
+
 class LoginOut(BaseModel):
-    id:int
+    id: int
     username: str
     access_token: str
     refresh_token: str
     token_type: str
 
+
 class RefreshTokenRequest(BaseModel):
     refresh_token: str
+
 
 class TokenRefreshOut(BaseModel):
     access_token: str
     refresh_token: str
     token_type: str
 
+
 class StudentOut(BaseModel):
     id: int
     username: str
 
     class Config:
-        from_attributes= True
+        from_attributes = True
+
 
 class OTPRequest(BaseModel):
     email: EmailStr
 
+
 class OTPVerify(BaseModel):
     email: EmailStr
     otp: str
+
 
 class SubjectCreate(BaseModel):
     subject_name: str

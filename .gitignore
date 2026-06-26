@@ -56,3 +56,7 @@ Thumbs.db
 .env
 .env.local
 .env.*.local
+
+# ruff cache
+
+.ruff_cache

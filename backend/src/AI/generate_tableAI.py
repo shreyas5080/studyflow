@@ -116,8 +116,8 @@ def generate_table(
     except Exception as e:
         print("AI timetable failed:", e)
         print("RAW AI:", ai_text)
-
-    time_table_data = generate_fallback_timetable(subjects, today)
+        time_table_data = generate_fallback_timetable(subjects, today)
+    
 
     clean_text = json.dumps(time_table_data)
 

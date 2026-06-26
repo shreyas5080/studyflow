@@ -5,7 +5,7 @@ A full-stack application for planning study routines, managing subjects, and tra
 ![FastAPI](https://img.shields.io/badge/FastAPI-Backend-green)
 ![React](https://img.shields.io/badge/React-Frontend-blue)
 ![Docker](https://img.shields.io/badge/Docker-Containerized-blue)
-![MySQL](https://img.shields.io/badge/MySQL-Database-orange)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Database-blue)
 ![Redis](https://img.shields.io/badge/Redis-OTP-red)
 
 ## 📋 Project Overview
@@ -13,7 +13,7 @@ A full-stack application for planning study routines, managing subjects, and tra
 This repository contains:
 - **Backend**: FastAPI REST API with SQLAlchemy models
 - **Frontend**: React + Vite application
-- **Database**: MySQL
+- **Database**: PostgreSQL
 - **OTP stroage**: Redis for one-time password verification
 
 The app supports user registration, login, protected dashboard access, and subject CRUD operations.
@@ -92,7 +92,7 @@ studyflow/
 ## 🧱 Architecture
 
 ```
-Browser (React) -> FastAPI backend -> MySQL
+Browser (React) -> FastAPI backend -> PostgreSQL
                        │
                        └── Redis for OTP
 ```
@@ -154,7 +154,7 @@ Browser (React) -> FastAPI backend -> MySQL
 ### Prerequisites
 - Python 3.8+
 - Node.js 16+
-- MySQL
+- PostgreSQL
 - pip
 - npm
 - Docker & Docker Compose (optional, recommended)
@@ -184,7 +184,7 @@ Browser (React) -> FastAPI backend -> MySQL
    ```
 5. Configure `.env` with your database credentials
    ```ini
-   SQL_URL=mysql+pymysql://root:password@localhost/<your_database_name>
+   SQL_URL=postgresql+psycopg://postgres:password@localhost:5432/studyflow
    ```
 6. Initialize the database
    ```bash
@@ -224,7 +224,7 @@ Browser (React) -> FastAPI backend -> MySQL
 Update your `.env` file for Docker:
 
 ```ini
-SQL_URL=mysql+pymysql://root:password@mysql/app
+SQL_URL=postgresql+psycopg://postgres:password@localhost:5432/studyflow
 ```
 
 ### Docker Container Setup

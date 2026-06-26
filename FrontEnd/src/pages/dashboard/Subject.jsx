@@ -68,6 +68,10 @@ export default function Subject() {
             });
 
             const data = await response.json();
+            if (!response.ok) {
+                setError("You can't add subject.");
+                return;
+            }
             setSubjectName({ subject_name: "", exam_date: "", difficulty: "" });
             setSubjects([...subjects, data.subject]);
         } catch (error) {

@@ -46,6 +46,8 @@ def get_current_user(
 
     except JWTError:
         raise credentials_exception
+    
+    user_id = int(user_id)
 
     user = db.query(User).filter(
         User.id == user_id

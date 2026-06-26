@@ -26,6 +26,7 @@ class User(Base):
 
     password_hash = Column(Text, nullable=False)
 
+
     full_name = Column(String(100))
 
     created_at = Column(
@@ -65,7 +66,7 @@ class Subject(Base):
     exam_date = Column(Date)
 
     difficulty = Column(
-        Enum("easy", "medium", "hard")
+        Enum("easy", "medium", "hard",name="Hardness")
     )
 
     created_at = Column(
@@ -96,7 +97,7 @@ class SyllabusTopic(Base):
     topic_name = Column(String(255), nullable=False)
 
     priority_level = Column(
-        Enum("low", "medium", "high")
+        Enum("low", "medium", "high",name="priority")
     )
 
     estimated_hours = Column(Integer)
@@ -187,7 +188,7 @@ class StudySession(Base):
     duration_minutes = Column(Integer)
 
     status = Column(
-        Enum("pending", "completed", "missed")
+        Enum("pending", "completed", "missed" , name="status_type")
     )
 
     # Relationships
@@ -237,7 +238,7 @@ class Resource(Base):
     )
 
     resource_type = Column(
-        Enum("youtube", "article", "pdf", "course")
+        Enum("youtube", "article", "pdf", "course",name="resource")
     )
 
     title = Column(String(255))

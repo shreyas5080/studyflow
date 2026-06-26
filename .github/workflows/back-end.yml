@@ -3,8 +3,11 @@ name: backend
 on:
   push:
     branches:
-      - main 
+      - main
       - dev
+
+permissions:
+  contents: write
 
 jobs:
   build:
@@ -17,6 +20,8 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
 
       - uses: actions/setup-python@v5
         with:
@@ -28,7 +33,17 @@ jobs:
           pip install -r requirements.txt
           pip install ruff
 
-      - name: running ruff
-        run: |
-          ruff check . 
+      - name: Run Ruff linter
+        run: ruff check .
 
+      - name: Format code
+        run: ruff format .
+
+      - name: Commit formatted code
+        run: |
+          cd ..
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add backend
+          git diff --cached --quiet || git commit -m "style: format backend code"
+          git push

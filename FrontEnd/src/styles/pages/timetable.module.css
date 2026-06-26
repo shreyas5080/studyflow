@@ -1,25 +1,24 @@
 .timeTable {
-    width: 85%;
-    margin-left: auto;
+  width: 85%;
+  margin-left: auto;
 }
 
 .timeTable table {
-    margin: 40px;
-    width: fit-content;
-    border: 1px solid rgb(171, 171, 171);
-    border-collapse: collapse;
-    padding: 10px;
+  margin: 40px;
+  width: fit-content;
+  border: 1px solid rgb(171, 171, 171);
+  border-collapse: collapse;
+  padding: 10px;
 }
 
 .timeTable th {
-    background-color: #11274e;
-    border: 2px solid #20095eb6;
-    padding: 20px 30px;
-
+  background-color: #11274e;
+  border: 2px solid #20095eb6;
+  padding: 20px 30px;
 }
 
 .timeTable td {
-    border: 1px solid #6aa1ff70;
-    text-align: center;
-    padding: 15px 25px;
+  border: 1px solid #6aa1ff70;
+  text-align: center;
+  padding: 15px 25px;
 }

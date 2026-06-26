@@ -1,197 +1,191 @@
 .subjectContainer {
-    width: 85%;
-    margin-left: auto;
+  width: 85%;
+  margin-left: auto;
 }
 
 .addSubject {
-    width: fit-content;
-    margin: 20px;
-    padding: 10px 20px;
-    display: flex;
-    border: 1px solid #30363D;
-    border-radius: 24px;
-    flex-direction: column;
-    box-shadow:
-        0 0 30px rgba(99, 102, 241, .15);
-    gap: 10px;
+  width: fit-content;
+  margin: 20px;
+  padding: 10px 20px;
+  display: flex;
+  border: 1px solid #30363d;
+  border-radius: 24px;
+  flex-direction: column;
+  box-shadow: 0 0 30px rgba(99, 102, 241, 0.15);
+  gap: 10px;
 }
 
 .addSubject h2 {
-    font-size: 2rem;
-    text-align: center;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  font-size: 2rem;
+  text-align: center;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .addSubject input {
-    border: 1px solid rgba(252, 252, 252, 0.250);
-    background: rgba(255, 255, 255, 0.156);
-    backdrop-filter: blur(100px);
-    border-radius: 12px;
-    padding: 12px 20px;
-    box-sizing: border-box;
-    transition: all 0.25s ease;
+  border: 1px solid rgba(252, 252, 252, 0.25);
+  background: rgba(255, 255, 255, 0.156);
+  backdrop-filter: blur(100px);
+  border-radius: 12px;
+  padding: 12px 20px;
+  box-sizing: border-box;
+  transition: all 0.25s ease;
 }
 
 .addSubject input:focus {
-    outline: none;
-    border-color: #3b82f6;
+  outline: none;
+  border-color: #3b82f6;
 }
 
-
 .addSubject button {
-    border: 1px solid #484F58;
-    width: fit-content;
-    align-self: center;
-    padding: 6px 12px;
-    border-radius: 999px;
-    background-color: rgba(31, 31, 244, 0.84);
-    cursor: pointer;
-    transition: all 0.25s ease;
+  border: 1px solid #484f58;
+  width: fit-content;
+  align-self: center;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background-color: rgba(31, 31, 244, 0.84);
+  cursor: pointer;
+  transition: all 0.25s ease;
 }
 
 .addSubject button:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .subjectTable {
-    margin: 20px;
-    padding: 12px 20px;
-    font-size: 1rem;
-    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  margin: 20px;
+  padding: 12px 20px;
+  font-size: 1rem;
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
 }
 
 .subjectTable h2 {
-    color: #C9D1D9;
-    text-align: center;
-    font-size: 1.4rem;
+  color: #c9d1d9;
+  text-align: center;
+  font-size: 1.4rem;
 }
 
-
-
 .subjectTable table {
-    border: 1px solid #30363D;
-    border-collapse: collapse;
-    box-shadow:
-        0 8px 20px rgba(0, 21, 60, 0.420);
+  border: 1px solid #30363d;
+  border-collapse: collapse;
+  box-shadow: 0 8px 20px rgba(0, 21, 60, 0.42);
 }
 
 .subjectTable th {
-    border: 3px solid #30363D;
-    background: rgba(99, 102, 241, 0.15);
-    color: #c7d2fe;
-    padding: 16px;
+  border: 3px solid #30363d;
+  background: rgba(99, 102, 241, 0.15);
+  color: #c7d2fe;
+  padding: 16px;
 }
 
-
 .subjectTable td {
-    border: 3px solid #30363D;
-    text-align: center;
-    padding: 10px;
+  border: 3px solid #30363d;
+  text-align: center;
+  padding: 10px;
 }
 
 .subjectTable td:first-child {
-    background: rgba(99, 102, 241, 0.08);
-    color: #a5b4fc;
-    font-weight: 600;
+  background: rgba(99, 102, 241, 0.08);
+  color: #a5b4fc;
+  font-weight: 600;
 }
 
 .subjectTable .edit {
-    margin-right: 10px;
-    cursor: pointer;
-    border: none;
-    color: white;
-    background: #2563EB;
-    padding: 6px 20px;
-    border-radius: 999px;
-    transition: all 0.3s ease;
+  margin-right: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: #2563eb;
+  padding: 6px 20px;
+  border-radius: 999px;
+  transition: all 0.3s ease;
 }
 
 .subjectTable .delete {
-    margin-left: 10px;
-    cursor: pointer;
-    border: none;
-    color: white;
-    background: rgb(242, 39, 39);
-    padding: 6px 20px;
-    border-radius: 999px;
-    transition: all 0.3s ease;
+  margin-left: 10px;
+  cursor: pointer;
+  border: none;
+  color: white;
+  background: rgb(242, 39, 39);
+  padding: 6px 20px;
+  border-radius: 999px;
+  transition: all 0.3s ease;
 }
 
 .dateInput {
-    width: 100%;
-    padding: 12px;
-    border: 1px solid #374151;
-    border-radius: 12px;
-    background: #1f2937;
-    color: white;
-    font-size: 16px;
-    outline: none;
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #374151;
+  border-radius: 12px;
+  background: #1f2937;
+  color: white;
+  font-size: 16px;
+  outline: none;
 }
 
 .dateInput:focus {
-    border-color: #3b82f6;
+  border-color: #3b82f6;
 }
 
 .subjectTable .delete:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .subjectTable .edit:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }
 
 .difficultyGroup {
-    display: flex;
-    gap: 12px;
-    margin-bottom: 6px;
+  display: flex;
+  gap: 12px;
+  margin-bottom: 6px;
 }
 
 .difficultyGroup label {
-    flex: 2;
-    padding: 8px;
-    border-radius: 12px;
-    text-align: center;
-    cursor: pointer;
-    background: rgba(255, 255, 255, 0.08);
-    border: 1px solid rgba(255, 255, 255, 0.15);
-    color: white;
+  flex: 2;
+  padding: 8px;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: white;
 }
 
 .difficultyGroup input {
-    margin-right: 8px;
+  margin-right: 8px;
 }
 
 .easy {
-    color: #4caf50;
+  color: #4caf50;
 }
 
 .medium {
-    color: #ff9800;
+  color: #ff9800;
 }
 
 .hard {
-    color: #f44336;
+  color: #f44336;
 }
 
 .subjectContainer .title {
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
-    text-align: center;
-    font-size: 2rem;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  text-align: center;
+  font-size: 2rem;
 }
 
 .genTable {
-    font-size: 1rem;
-    text-align: right;
-    color: #a9a9a9;
-    border: 2px solid rgba(2, 67, 69, 0.411);
-    border-radius: 24px;
-    padding: 6px 12px;
-    cursor: pointer;
-    margin: 10px;
-    background: #7c3aed;
-    transition: all 0.3s ease;
+  font-size: 1rem;
+  text-align: right;
+  color: #a9a9a9;
+  border: 2px solid rgba(2, 67, 69, 0.411);
+  border-radius: 24px;
+  padding: 6px 12px;
+  cursor: pointer;
+  margin: 10px;
+  background: #7c3aed;
+  transition: all 0.3s ease;
 }
 
 .genTable:hover {
-    transform: scale(1.05);
+  transform: scale(1.05);
 }

@@ -19,13 +19,20 @@ export default function Home() {
             <p className={styles.eyebrow}>StudyFlow</p>
             <h1>Organize your study journey with AI-powered planning.</h1>
             <p className={styles["hero-copy"]}>
-              Build better study habits, track progress, and keep your goals on schedule with a smart planner designed for learners.
+              Build better study habits, track progress, and keep your goals on
+              schedule with a smart planner designed for learners.
             </p>
             <div className={styles["hero-actions"]}>
-              <Link className={`${styles.btn} ${styles["primary-btn"]}`} to="/register">
+              <Link
+                className={`${styles.btn} ${styles["primary-btn"]}`}
+                to="/register"
+              >
                 Get Started
               </Link>
-              <Link className={`${styles.btn} ${styles["secondary-btn"]}`} to="/login">
+              <Link
+                className={`${styles.btn} ${styles["secondary-btn"]}`}
+                to="/login"
+              >
                 Login
               </Link>
             </div>
@@ -49,15 +56,24 @@ export default function Home() {
         <section className={styles["feature-grid"]}>
           <article>
             <h3>Smart Study Dashboard</h3>
-            <p>See your upcoming tasks, exam deadlines, and study progress in one place.</p>
+            <p>
+              See your upcoming tasks, exam deadlines, and study progress in one
+              place.
+            </p>
           </article>
           <article>
             <h3>Secure User Accounts</h3>
-            <p>Register safely and store your study preferences with encrypted passwords.</p>
+            <p>
+              Register safely and store your study preferences with encrypted
+              passwords.
+            </p>
           </article>
           <article>
             <h3>Fast API Integration</h3>
-            <p>Connect to a backend powered by FastAPI and MySQL for reliable data storage.</p>
+            <p>
+              Connect to a backend powered by FastAPI and MySQL for reliable
+              data storage.
+            </p>
           </article>
         </section>
 
@@ -65,8 +81,9 @@ export default function Home() {
           <div>
             <h2>Designed for focused learners</h2>
             <p>
-              StudyFlow helps you plan every subject, manage topic priority, and turn study chaos into a clear routine.
-              Start by registering, then build your study path with ease.
+              StudyFlow helps you plan every subject, manage topic priority, and
+              turn study chaos into a clear routine. Start by registering, then
+              build your study path with ease.
             </p>
           </div>
         </section>

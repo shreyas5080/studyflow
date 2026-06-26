@@ -1,71 +1,73 @@
 .toast {
-    position: fixed;
-    top: 16px;
-    left: 50%;
-    transform: translateX(-50%);
-    min-width: 320px;
-    max-width: 92%;
-    padding: 14px 20px;
-    background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
-    color: #fff;
-    border-radius: 16px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 14px;
-    z-index: 1000;
-    opacity: 0;
-    animation: slideDownFade 4s forwards;
-    backdrop-filter: blur(10px);
+  position: fixed;
+  top: 16px;
+  left: 50%;
+  transform: translateX(-50%);
+  min-width: 320px;
+  max-width: 92%;
+  padding: 14px 20px;
+  background: linear-gradient(135deg, #dc2626 0%, #f87171 100%);
+  color: #fff;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 20px 48px rgba(0, 0, 0, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  z-index: 1000;
+  opacity: 0;
+  animation: slideDownFade 4s forwards;
+  backdrop-filter: blur(10px);
 }
 
 .toast::before {
-    content: "⚠️";
-    margin-right: 10px;
-    font-size: 1.2rem;
+  content: "⚠️";
+  margin-right: 10px;
+  font-size: 1.2rem;
 }
 
 .toastMessage {
-    flex: 1;
-    font-size: 0.95rem;
-    line-height: 1.5;
+  flex: 1;
+  font-size: 0.95rem;
+  line-height: 1.5;
 }
 
 .toastClose {
-    background: rgba(255, 255, 255, 0.18);
-    border: 1px solid rgba(255, 255, 255, 0.28);
-    color: #fff;
-    padding: 8px 12px;
-    border-radius: 9999px;
-    cursor: pointer;
-    transition: background 0.2s ease, transform 0.2s ease;
+  background: rgba(255, 255, 255, 0.18);
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 9999px;
+  cursor: pointer;
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease;
 }
 
 .toastClose:hover {
-    background: rgba(255, 255, 255, 0.32);
-    transform: translateY(-1px);
+  background: rgba(255, 255, 255, 0.32);
+  transform: translateY(-1px);
 }
 
 @keyframes slideDownFade {
-    0% {
-        opacity: 0;
-        transform: translateX(-50%) translateY(-20px);
-    }
+  0% {
+    opacity: 0;
+    transform: translateX(-50%) translateY(-20px);
+  }
 
-    10% {
-        opacity: 1;
-        top: 20px;
-    }
+  10% {
+    opacity: 1;
+    top: 20px;
+  }
 
-    90% {
-        opacity: 1;
-        top: 20px;
-    }
+  90% {
+    opacity: 1;
+    top: 20px;
+  }
 
-    100% {
-        opacity: 0;
-        top: 0;
-    }
+  100% {
+    opacity: 0;
+    top: 0;
+  }
 }

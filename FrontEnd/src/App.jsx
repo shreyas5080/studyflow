@@ -16,7 +16,10 @@ function App() {
       <Route path="/student/:id/time-table" element={<TimeTable />} />
       <Route path="/student/:id" element={<Student />} />
       <Route path="/student/:id/subjects" element={<Subject />} />
-      <Route path="/student/:id/subjects/:subjectId/edit" element={<EditSubject />} />
+      <Route
+        path="/student/:id/subjects/:subjectId/edit"
+        element={<EditSubject />}
+      />
     </Routes>
   );
 }

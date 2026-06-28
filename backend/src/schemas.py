@@ -1,5 +1,6 @@
-from pydantic import BaseModel, EmailStr
 from datetime import date
+
+from pydantic import BaseModel, EmailStr
 
 
 class UserCreate(BaseModel):
@@ -61,3 +62,17 @@ class SubjectCreate(BaseModel):
     subject_name: str
     exam_date: date
     difficulty: str
+
+
+class TopicCreate(BaseModel):
+    topic_name: str
+    priority_level: str = "medium"
+    estimated_hours: int | None = None
+    is_completed: bool = False
+
+
+class TopicUpdate(BaseModel):
+    topic_name: str | None = None
+    priority_level: str | None = None
+    estimated_hours: int | None = None
+    is_completed: bool | None = None

@@ -121,7 +121,9 @@ def update_topic(
     return topic
 
 
-@router.delete("/subjects/{subject_id}/topics/{topic_id}", status_code=status.HTTP_204_NO_CONTENT)
+@router.delete(
+    "/subjects/{subject_id}/topics/{topic_id}", status_code=status.HTTP_204_NO_CONTENT
+)
 def delete_topic(
     subject_id: int,
     topic_id: int,

@@ -77,6 +77,7 @@ class TopicUpdate(BaseModel):
     estimated_hours: int | None = None
     is_completed: bool | None = None
 
+
 class TopicResponse(BaseModel):
     id: int
     subject_id: int
@@ -85,6 +86,4 @@ class TopicResponse(BaseModel):
     estimated_hours: int | None = None
     is_completed: bool
 
-    model_config = {
-        "from_attributes": True
-    }
+    model_config = {"from_attributes": True}

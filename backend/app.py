@@ -1,7 +1,6 @@
 from bcrypt import gensalt, hashpw
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
-from redis.commands.search.querystring import tags
 from sqlalchemy.exc import IntegrityError
 from sqlalchemy.orm import Session
 from src.AI.generate_tableAI import router as table_gen

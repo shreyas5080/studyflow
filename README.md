@@ -97,6 +97,7 @@ flowchart TD
 
     B --> FE["React + Vite Frontend"]
     FE --> R["React Router Pages"]
+    REG["Register"] --> OTP
 
     R --> H["Home"]
     R --> REG["Register"]
@@ -116,6 +117,7 @@ flowchart TD
     AUTH --> JWT["JWT Access + Refresh Tokens"]
     OTP --> REDIS["Redis OTP Store"]
     OTP --> EMAIL["Email Service"]
+    OTP --> L["Login"]
 
     SUB --> DB["PostgreSQL Database"]
     DASH --> DB

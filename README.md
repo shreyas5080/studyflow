@@ -47,6 +47,7 @@ studyflow/
 │       └── routes/
 │           ├── login.py       # login endpoint
 │           ├── studentlog.py  # student dashboard endpoint
+│           ├── topic.py       # Topic CRUD endpoints
 │           └── subjects.py    # subject CRUD endpoints
 ├── docker-compose.yml         # Docker Compose for backend, frontend, PostgreSQL and Redis
 └── FrontEnd/                   # React frontend application
@@ -379,6 +380,12 @@ docker compose exec backend python -m src.init_db
 - `PUT /student/{user_id}/subjects/{subject_id}`
 - `DELETE /student/{user_id}/subjects/{subject_id}`
 
+### Topic Endpoints
+- `POST /subjects/{subject_id}/topics`
+- `GET /subjects/{subject_id}/topics`
+- `GET /subjects/{subject_id}/topics/{topic_id}`
+- `PUT /subjects/{subject_id}/topics/{topic_id}`
+- `DELETE /subjects/{subject_id}/topics/{topic_id}`
 
 ### AI Table Creation Endpoints
 - `POST /student/{user_id}/subjects/generate-table`
@@ -405,7 +412,7 @@ docker compose exec backend python -m src.init_db
 - SQLAlchemy
 - Pydantic
 - bcrypt
-- PostgreSQL(via pyscorg)
+- PostgreSQL(via psycorg)
 - redis
 - uvicorn
 
@@ -487,4 +494,4 @@ MIT License
 
 ---
 
-**Last Updated:** 27 June 2026
+**Last Updated:** 30 June 2026
